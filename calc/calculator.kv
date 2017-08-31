@@ -1,0 +1,142 @@
+#: import get_color_from_hex kivy.utils.get_color_from_hex
+
+
+<CalculatorRoot>
+#    Calculator1
+#        id: calculator1
+
+#<calculator1>
+# 画面全体のレイアウト
+
+    id: calculator1
+
+    orientation: "vertical" # オブジェクトを水平に配置
+    display: display_input
+
+    ActionBar:
+
+        ActionView:
+            ActionPrevious:
+                title: '電卓'
+                with_previous: False # trueだと頭のロゴがボタンになる？
+
+            ActionButton:
+                text: '切り替え'
+
+            ActionButton:
+                text: '音'
+                icon: 'atlas://data/images/defaulttheme/audio-volume-high'
+
+            ActionGroup:    # ボタンをグループ化する
+                text: '種類'
+                ActionButton:
+                    text: '関数電卓'
+                ActionButton:
+                    text: 'プログラマー'
+
+    TextInput:  # 数字表示部分
+        id: display_input
+        size_hint_y: 1  #　縦の大きさを全体の　1/5.5　の割合で表示する   
+        font_size: 60
+        hint_text: '0'
+
+    Keyboard:   # テーンキーの表示部分
+        size_hint_y: 3.5    #　縦の大きさを全体の　3.5/4.5　の割合で表示する
+
+
+<Keyboard@GridLayout>:  # class Keyboard(GridLayout):と同じ意味
+
+    # 4列×5行のボタンを作成する
+    cols: 4
+    rows: 5
+
+    spacing: 2
+    padding: 4
+
+    # 1列目
+    ClearButton:    # ボタンの種類
+        text: "C"   # ボタンの表示名
+    CalcButton:
+        text: "%"
+    DelButton:
+        text: "<x"
+    OperatorButton:
+        text: "/"
+
+    # 2列目
+    NumberButton:
+        text: "7"
+    NumberButton:
+        text: "8"
+    NumberButton:
+        text: "9"
+    OperatorButton:
+        text: "*"
+
+    # 3列目
+    NumberButton:
+        text: "4"
+    NumberButton:
+        text: "5"
+    NumberButton:
+        text: "6"
+    OperatorButton:
+        text: "-"
+
+    # 4列目
+    NumberButton:
+        text: "1"
+    NumberButton:
+        text: "2"
+    NumberButton:
+        text: "3"
+    OperatorButton:
+        text: "+"
+
+    # 5列目
+    CalcButton:
+        text: "+/-"
+    NumberButton:
+        text: "0"
+    CalcButton:
+        text: "."
+    EqualButton:
+        text: "="
+
+<ButtonFormat@Button>:
+    font_size: '30dp'
+    background_normal: ''
+    background_down: ''
+    background_color: get_color_from_hex("#83481F")
+    on_press: self.background_color = get_color_from_hex("#825534")
+    on_release: self.background_color = get_color_from_hex("#823600")
+
+
+<NumberButton@ButtonFormat>:
+    #font: "Roboto"
+    font_size: '30dp'
+    bold: True
+    on_press:  app.root.ids['calcu_root'].print_number(self.text)   # ボタンが押されたとき main.pyの　Calculatorクラスのprint_number()が実行される
+    #on_press:  app.test()  # ボタンが押されたとき main.pyの　Calculatorクラスのprint_number()が実行される
+
+
+<OperatorButton@ButtonFormat>:
+    on_press:  app.root.ids['calcu_root'].print_operator(self.text)
+    #on_press:  root.print_operator(self.text)
+
+<ClearButton@ButtonFormat>:
+    on_press:  app.root.ids['calcu_root'].clear_display()
+    #on_press:  root.clear_display()
+
+
+<DelButton@ButtonFormat>:
+    on_press:  app.root.ids['calcu_root'].del_char()
+    #on_press:  root.del_char()
+
+<EqualButton@ButtonFormat>:
+    on_press:  app.root.ids['calcu_root'].calculate()
+    #on_press:  root.calculate()
+
+<CalcButton@ButtonFormat>:  #小数点を表示する予定だが未実装
+    on_press:  root.ids['calcu_root'].print_point(self.text)
+    #on_press: root.print_point(self.text)

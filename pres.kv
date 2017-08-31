@@ -1,0 +1,957 @@
+# 
+#:include defalt_value.kv
+#:include set_widget.kv
+
+#:include ./calc/calculator.kv
+
+MainSlide:
+
+
+<MainSlide>
+    BoxLayout:
+        size: root.size
+        orientation: 'vertical'
+        canvas.before:
+            Color:
+                rgba: color(background_color)
+            Rectangle:
+                pos: self.pos
+                size: self.size
+#        Title:
+#            text: '「Kivyによるアプリケーション開発のすすめ」'
+        Title:
+            text: sm.current
+            PresButton:
+                pos_hint: {'center_y': .5, 'x': 0}
+                size_hint_x: None
+                width: self.height
+                text: '←'
+                on_press:
+                    sm.transition.direction = 'right'
+                    sm.current = sm.previous()
+            PresButton:
+                pos_hint: {'center_y': .5, 'right': 1}
+                size_hint_x: None
+                width: self.height
+                text: '→'
+                on_press:
+                    sm.transition.direction = 'left'
+                    sm.current = sm.next()
+
+        ScreenManager:
+            id: sm
+            Screen:
+                name: 'PyconJP2017'
+                BoxLayout:
+                    orientation: 'vertical'
+                    TitleLabel:
+                        text: '[b]「Kivyによるアプリケーション開発のすすめ」[/b]'
+
+                    ContentLabel:
+                        #markup: True
+                        text: 'オカザキ'
+
+                    Spacer
+
+            Screen:
+                name: '自己紹介'
+                TextSlide:
+                    # テキストないで\nを使用すると改行する
+                    text:
+                        '''
+                        オカザキ
+                        職業：一応プログラマー
+                        http://twitter.com/dario_okazaki
+                        '''
+
+            Screen:
+                name: '検証環境'
+
+                TextSlide:
+                    text:
+                        '''
+                        Windows10 ※Mac,Linuxでも一部の機能を除いて動作します
+                        Python3.5
+                        Kivy1.10
+                        '''
+
+            Screen:
+                name: 'コードについて'
+                TextSlide:
+                    text:
+                        '''
+                        GITHub:
+                        Slide
+                        ※コードの詳しい説明は今回はしません。
+                        '''
+                    #Spacer
+
+            Screen:
+                name: 'Kivyとは(1/2)'
+                BoxLayout:
+                    orientation: 'vertical'
+                    FloatLayout:
+                        id: logo_container
+                        size_hint_y: None
+                        height: logo.texture_size[1] * 2
+                        Scatter:
+                            size_hint: None, 1.0
+                            size: logo.size
+                            center: logo_container.center
+                            Image:
+                                id: logo
+                                size: self.texture_size
+                                source: 'data/logo/kivy-icon-256.png'
+
+                    ContentLabel:
+                        text:
+                            '''
+                            ・PythonでGUIを作成するツール
+                            ・Python2/3対応
+                            ・マルチプラットフォーム（Win,Mac,Linux,Raspberry Pi,android,ios）
+                            ・マルチタッチ対応
+                            ・Kv LanguageというUIを記述するメタ言語がある
+                            ・MITライセンス
+                            '''
+                    Spacer
+
+
+            Screen:
+                name: 'Kivyとは(2/2)'
+                BoxLayout:
+                    orientation: 'vertical'
+                
+                    Image:
+                        source: 'github.jpg'
+                
+                    ImageLabel:
+                        text:
+                            '''
+                            ・GitHub上（ https://github.com/kivy/kivy ）でコードが公開されている
+                            ・開発は2017年現在もおこなわれている
+                            '''
+
+
+
+            Screen:
+                name: 'kivyの知名度1'
+                BoxLayout:
+                    orientation: 'vertical'
+                
+                    Image:
+                        source: 'intro.JPG'
+                
+                    ImageLabel:
+                        text:
+                            '''
+                            Python3.6から公式の「グラフィックユーザインタフェース FAQ」に
+                            も紹介されている
+                            http://docs.python.jp/3/faq/gui.html#kivy
+                            '''
+                    #Spacer
+
+            Screen:
+                name: 'kivyの知名度2'
+                BoxLayout:
+                    orientation: 'vertical'
+                
+                    Image:
+                        source: 'intro2.JPG'
+                
+                    ImageLabel:
+                        text:
+                            '''
+                            AweSome Python」Python GUI ではGUIの部門では1位　
+                            https://python.libhunt.com/categories/290-gui
+                            '''
+                    #Spacer
+
+
+            Screen:
+                name: '今日の内容'
+                BoxLayout:
+                    orientation: 'vertical'
+                    TitleLabel:
+                        text:
+                            '''
+                            \n
+                            「Kivyで何ができるか」の紹介
+                            '''
+                    Spacer
+
+            Screen:
+                name: 'Kivyで作れるもの'
+                TextSlide:
+                    text:
+                        '''
+                        公式で出しているAndroidアプリがあるので
+                        それをインストールして試してみる。\n
+                        ※Android端末がなくてもインストール後、
+                        example配下にあるのでそれを実行して試せます。
+                        '''
+                    #Spacer
+
+
+            Screen:
+                name: 'Kivy Showcase'
+                BoxLayout:
+                    orientation: 'vertical'
+                
+                    Image:
+                        source: 'Showcase.jpg'
+                
+                    ImageLabel:
+                        text:
+                            '''
+                            Kivy Showcas（https://play.google.com/store/apps/details?id=org.kivy.showcase）
+                            －UI（widget）の一覧とコードが読める
+                            '''
+
+            Screen:
+                name: 'Kivy Touchtracer'
+                BoxLayout:
+                    orientation: 'vertical'
+                
+                    Image:
+                        source: 'Touchtracer.jpg'
+                
+                    ImageLabel:
+                        text:
+                            '''
+                            Kivy Touchtracer（https://play.google.com/store/apps/details?id=org.kivy.touchtracer）
+                            タッチした際の挙動を表示する
+                            マルチタッチ対応
+                            '''
+
+
+            Screen:
+                name: 'Kivyの構造'
+                BoxLayout:
+                    orientation: 'vertical'
+                
+                    Image:
+                        source: 'architecture.png'
+                
+                    ImageLabel:
+                        text:
+                            '''
+                            GraphicはOpenGL ES
+                            入力はSDLで制御
+                            ※Pygameはver1.9で不要になった
+                            Windowsはver1.10でANGLE（OpenGl ESのDirectX実装）が選択できるようになった
+                            '''
+
+            Screen:
+                name: 'Kivyのファイル構造'
+                TextSlide:
+                    text:
+                        '''
+                        ①Pythonファイル（機能部分）とKVファイル（UI）
+                        ②Pythonファイルのみ
+                        －KV言語が内部で記載されている
+                        －Pythonのみで構成
+
+                        '''
+                    #Spacer
+
+
+            Screen:
+                name: 'Kivyの機能について'
+                TextSlide:
+                    text:
+                        '''
+                        ここで説明するのはごく一部の機能です
+                        '''
+                    #Spacer
+
+            Screen:
+                name: 'Widget'
+                TextSlide:
+                    text:
+                        '''
+                        画面を構成するパーツ
+                        ・Label
+                        ・Image
+                        ・Button
+                        etc…
+                        '''
+
+            Screen:
+                name: 'Layout'
+                TextSlide:
+                    text:
+                        '''
+                        画面のレイアウト
+                        ・BoxLayout
+                        ・GridLayout
+                        ・Float Layout
+                        etc…
+                        '''
+
+            Screen:
+                name: 'Event'
+                TextSlide:
+                    text:
+                        '''
+                        動作に紐づく命令を実行する
+                        ・On_Press
+                        ・On_Relese
+                        etc…
+                        '''
+
+            Screen:
+                name: '文字、画像の表示'
+                ExampleBoxWidget
+
+            Screen:
+                name: 'Property'
+                TextSlide:
+                    text:
+                        '''
+                        widgetの値を参照する
+                        ・NumericProperty 
+                        ・StringProperty
+                        ・ListProperty
+                        etc…
+                        '''
+
+            Screen:
+                name: 'ボタンの使用'
+                ExampleButton:
+
+
+
+            Screen:
+                name: 'ボタンとレイアウトの使用例(1/2)'
+
+                CalculatorRoot:
+                    id:calcu_root
+
+            Screen:
+                name: 'ボタンとレイアウトの使用例(2/2)'
+                Image:
+                    source: 'kivy_calender.jpg'
+
+
+            Screen:
+                name: 'Kivy Language'
+                BoxLayout:
+                    orientation: 'vertical'
+                
+                    Image:
+                        source: 'kv_sample.JPG'
+                
+                    ImageLabel:
+                        text:
+                            '''
+                            KVともいう
+                            ・UX用のメタ言語
+                            ・Widget（UI）を簡単に記述できる
+                            ・CSSとBootstrap（グリッド）の概念にちかい
+                            ※KVを使用しなくてもUIは作れるが
+                            使用したほうがコードが簡潔になる。
+                            '''
+
+            Screen:
+                name: 'Animation'
+                TextSlide:
+                    text:
+                        '''
+                        動きを付ける
+                        ・start
+                        ・stop
+                        使用例：メニューの表示などに使う
+                        '''
+
+            Screen:
+                name: 'Animationの使用'
+                AnimeWidget:
+                #Button:
+                    id: lap
+                    text: 'Lap'
+
+            Screen:
+                name: 'Clock'
+                TextSlide:
+                    text:
+                        '''
+                        繰り返しや定期的な動作を行う
+                        ・schedule_interval
+                        ・schedule_once
+                        etc…
+                        '''
+
+            Screen:
+                name: '繰り返し（時計）'
+
+                BoxLayout:
+                    orientation: 'vertical'
+                    Label:  # test
+                        id: time
+                        font_name: './fonts/7SDD.TTF'
+                        color: color(content_color)
+                        text: '[b]00:00:00[/b]'
+                        font_size: 100
+                        markup: True
+                    
+                    Label:  # test
+                        id: today
+                        color: color(content_color)
+                        font_name: './fonts/7SDD.TTF'
+                        text: 'aa/bb/cc'
+                        font_size: 100
+                        markup: True
+                    Spacer
+
+            Screen:
+                name: '繰り返し（ストップウォッチ）'
+
+                BoxLayout:
+                    orientation: 'vertical'
+
+                    Label:  # test
+                        id: stopwatch
+                        color: color(content_color)
+                        text: '[b]00:00:00[/b]'
+                        font_size: 50
+                        markup: True
+
+                    BoxLayout:
+                        height: 90
+                        orientation: 'horizontal'
+                        padding: 20
+                        spacing: 20
+                        size_hint: (1, None)
+
+                        Button:
+                            id: start_stop
+                            text: 'Start'
+                            on_press: app.start_stop()
+
+                        Button:
+                            id: reset
+                            text: 'Reset'
+                            on_press: app.reset()
+
+                        Button:
+                            id: lap
+                            text: 'Lap'
+                            on_press: app.record_lap()
+
+                    BoxLayout:
+                        height: 90
+                        orientation: 'horizontal'
+                    
+                        Label:  # test
+                            id: lap
+                            color: color(content_color)
+                            text: 'LAP'
+                            font_size: 30
+                            size_hint_x: 0.2
+                    
+                        Label:  # test
+                            id: lap
+                            color: color(content_color)
+                            text: '00:00:00'
+                            font_size: 50
+                            size_hint_x: 0.8
+                            markup: True
+
+                    Spacer
+
+            Screen:
+                name: '実例(時計2)'
+
+
+                MyClockWidget:
+
+
+            Screen:
+                name: 'そのほかの機能1'
+                TextSlide:
+                    text:
+                        '''
+                        スライド
+                        ・culsel:画面全体が動く
+                        ・slideview：ヘッダー，フッターは固定
+
+                        etc…
+                        '''
+
+            Screen:
+                name: 'そのほかの機能2'
+                TextSlide:
+                    text:
+                        '''
+                        ファイル選択
+                        ・ファイル選択
+                        ※日本語ファイルは文字化けします。
+                        \n
+                        ・ドラッグ＆ドロップ
+
+                        etc…
+                        '''
+
+            Screen:
+                name: 'ファイル選択'
+
+                BoxLayout:
+                    orientation: 'vertical'
+
+                    #size: root.size
+                    #pos: root.pos
+
+
+                    BoxLayout:
+                        size_hint_y: 0.2
+
+                        Label:
+                            font_size: 30
+                            color: 0,0,0,1
+                            text: 'リストタイプ'
+
+                        Label:
+                            font_size: 30
+                            color: 0,0,0,1
+                            text: 'アイコンタイプ'
+
+                    BoxLayout:
+                        size_hint_y: 0.8
+
+                        canvas.before:
+                            Color:
+                                rgba: 0.1, 0.1, 0.1, 1
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+
+
+                        FileChooserListView:
+                            rootpath: './'
+
+                        FileChooserIconView:
+                            rootpath: './'
+
+            Screen:
+                name: 'ドラッグ＆ドロップ'
+                ImageWidget: # ドラッグアンドドロップの例
+
+            Screen:
+                name: 'Garden'
+                TextSlide:
+                    text:
+                        '''
+                        拡張機能。個別にインストールする。
+                        ・グラフ描画
+                        ・地図表示
+                        etc…
+                        '''
+           # 時間があったらmapviewも実装するか？
+
+            Screen:
+                name: 'グラフ描画'
+                TextSlide:
+                    text:
+                        '''
+                        \n
+                        Kivyの機能のみで実装するか？
+                        ・Graph（https://github.com/kivy-garden/garden.graph）
+                        ※スライドに組み込むには改造する必要あり。
+                        https://github.com/kivy-garden/garden.graph/issues/7
+
+                        matplotlbを使用するか?
+                        ・matplotlib（https://github.com/kivy-garden/garden.matplotlib）
+                        ・動作が重い
+                        ・パッケージ化の際に難易度がます
+                        '''
+
+
+            Screen:
+                on_enter:root.call_glph()
+                name: 'グラフ(garden.glah)'
+                id: graph_plot2
+                GraphWidget:
+                    id: graph_plot4
+
+            Screen:
+                on_enter:root.call_matplot()
+                on_pre_leave:root.del_matplot()
+                name: 'グラフ（matplotlib)'
+                id: graph_matplot
+
+
+            Screen:
+                name: 'デスクトップアプリの方法'
+                TextSlide:
+                    text:
+                        '''
+                        PyInstaller(http://www.pyinstaller.org/)を使用
+                        ・オプションでいろいろできる
+                        ・依存関係の設定などコツがいる
+                        ・起動が重い
+                        '''
+
+            Screen:
+                name: 'androidアプリの作成'
+
+                BoxLayout:
+                    orientation: 'vertical'
+                    ContentLabel:
+                        text:
+                            '''
+                            ■androidの場合
+                            ・Kivy Launcher
+                            (GooglePlayから入手)
+                            →Pythonコードによるプレビューツール
+                            →バックグラウンドでも動作可能
+                            →Pyhon2系のみ対応
+                            ・Buildozer（UbuntuによるVM）でのapk作成
+                            ・Plyer Pythonラッパーのプラットフォーム非依存API群。
+                            ・Pyjnius PythonからJava / Android APIへの動的アクセスする。
+                            ・Kivy1.9.1対応で最新版には対応していない
+
+                            '''
+                    Spacer              
+
+            Screen:
+                name: 'iosアプリの作成'
+
+                BoxLayout:
+                    orientation: 'vertical'                        
+                    ContentLabel:
+                        text:
+                            '''
+                            ■iosの場合
+                            ・Python2系のみ対応※
+                            ・toolchainを使用してXcode用のプロジェクトを作成する
+                            ・Pyobjus：動的にiosのAPIにアクセス
+                            ※Python3系の検討は有志によって開発中
+                            Python 3 support #184
+                            （https://github.com/kivy/kivy-ios/issues/184）
+                            '''
+                    Spacer       
+ 
+            Screen:
+                name: 'kivy Lancherでの実演'
+
+                BoxLayout:
+                    orientation: 'vertical'                        
+                    ContentLabel:
+                        text:
+                            '''
+                            国会図書館の検索API（http://iss.ndl.go.jp/information/api/）
+                            を使用して書籍検索する
+                            UrlRequest()を利用して非同期でリクエストを送受信する
+                            '''
+                    Spacer  
+
+            Screen:
+                name: '実例（Android）'
+
+                BoxLayout:
+                    orientation: 'vertical'                        
+                    # 一旦コメントアウト
+                    #Camera:
+                    #    id: camera
+                    #    resolution: (640, 480)
+                    #    play: False
+                    #ToggleButton:
+                    #    text: 'Play'
+                    #    on_press: camera.play = not camera.play
+                    #    size_hint_y: None
+                    #    height: '48dp'
+                
+                        
+
+            Screen:
+                name: 'クロスプラットフォームについて'
+                BoxLayout:
+                    orientation: 'vertical'
+
+
+                    Image:
+                        source: 'gs-introduction.png'                
+                
+                    ImageLabel:
+                        text:
+                            '''
+                            ・どのデバイスまで視野にいれるかの検討が必要
+                            '''
+
+            Screen:
+                name: 'クロスプラットフォームの一覧'
+                BoxLayout:
+                    orientation: 'vertical'
+
+                    Image:
+                        source: 'os_ver.jpg'
+                
+                    ImageLabel:
+                        text:
+                            '''
+                            ※2019年をめどにすべてのデバイスでPython3系対応
+                            およびPython2系の対応廃止予定
+                            （https://github.com/kivy/kivy/wiki/Kivy-Python-2-Support-Timeline）
+
+                            '''
+
+            Screen:
+                name: 'Kivyについて'
+                TextSlide:
+                    text:
+                        '''
+                        GUIツールとしての機能は一通りそろっている
+                        '''
+
+            Screen:
+                name: 'Kivyの4つの壁'
+                BoxLayout:
+                    orientation: 'vertical'
+                    TitleLabel:
+                        text:
+                            '''
+                            \n
+                            ①情報が少ない
+                            ②インストール
+                            ③KV Language
+                            ④日本語入力（IME）
+
+                            '''
+                    Spacer
+
+            Screen:
+                name: '①情報が少ない(1/3)'
+                TextSlide:
+                    text:
+                        '''
+                        ・日本語の情報は特に少ない
+                        →存在していても日本語の情報は古いものがある
+                        →環境構築系はあてにしない方がいい
+                        ・コミュニティがないのでわからなくても聞く人がいない
+                        '''
+
+            Screen:
+                name: '①情報が少ない(2/3)'
+                TextSlide:
+                    text:
+                        '''
+                        ・公式サイト（英語）
+                        ・公式の翻訳
+                        ※最初のうちは両方開いて比較するとよい
+                        ※翻訳の協力者募集中
+                        \n
+                        ・Python Kivyの使い方① ～Kv Languageの基本～
+                        ・とりなとりな氏(blog)
+                        ・水戸う 納豆斎氏(Qitta)
+                        '''
+
+            Screen:
+                name: '①情報が少ない(3/3)'
+                TextSlide:
+                    text:
+                        '''
+                        ・StackOverflow
+                        →Google翻訳使えばなんとなくわかる
+                        \n
+                        書籍（洋書だが国内でもAmazonで購入可能）
+                        ・Creating Apps in Kivy  (O‘Reilly)
+                        ・Kivy -Interactive Applications and Games in Python -Second Edition
+                        ・Kivy BlueprintsWeb
+                        ※コードはwebで無料で見れる
+                        '''
+
+            Screen:
+                name: '②インストール'
+                TextSlide:
+                    text:
+                        '''
+                        \n
+                        WindowsOSだと
+                        OpenGLとSDLなど依存関係のインストールで
+                        pipでうまくいかない場合がある
+                        \n
+                        ・Python2.7/3.4について
+                        →公式どおりで大丈夫
+                        \n
+                        ・3.5以上をインストール
+                        →VisualStudio2015をインストール。
+                        glutを配置しないとインストールできない
+                        \n
+                        ・インストールがうまくいかない場合
+                        →非公式パッケージのインストールをお勧めします
+                        \n
+                        MacOSでもPython3.6だとうまく動作しない場合がある
+
+                        '''
+
+            Screen:
+                name: '③KV Language'
+                TextSlide:
+                    text:
+                        '''
+                        \n
+                        kivy独自の概念なので理解するのに時間がかかる
+                        \n
+                        ・kviewerを使うとリアルタイムに変更が確認できる
+                        ※Python3系だとコードを書きなおす必要がある
+                        反映されるのはkvファイル側の記述であるところが注意
+                        Pythonファイル側の設定は反映されない
+                        \n
+                        ・Inspector（）
+                        -m inspector　を実行時の引数につける
+                        widegetを選択してPropertyの値、親子関係を確認できる
+                        \n
+                        ・Python側でwidget内部にブレイクポイントをはって
+                        widgetの構成を調べる
+                        ・Atomやsublimeなどだと3rdPartyによる入力補完が可能
+                        '''
+
+
+            Screen:
+                name: '③KV Language(kviewer)'
+
+                BoxLayout:
+                    orientation: 'vertical'
+                
+                    Image:
+                        source: 'kviewer.jpg'
+                
+                    ImageLabel:
+                        text:
+                            '''
+                            ・実行の引数は以下の通り
+                            「python -m kivy.tools.kviewer <kvファイル>」
+                            ・Python3系だとKivy本体のソースを修正しないと
+                            エラーになって起動しない
+                            '''
+
+
+            Screen:
+                name: '③KV Language(Inspector)'
+                TextSlide:
+                BoxLayout:
+                    orientation: 'vertical'
+                
+                    Image:
+                        source: 'inspector.jpg'
+                
+                    ImageLabel:
+                        text:
+                            '''
+                            ・実行時引数は以下の通り
+                            「python ./main.py -m inspector」
+                            ・「Ctr+e」でメニューがでる
+
+                            '''
+
+            Screen:
+                name: '④日本語入力（IME）'
+                TextSlide:
+                    text:
+                        '''
+                        \n
+                        windows/mac/iosだと日本語入力中のIMEが表示されない
+                        ・SDL側の入力イベントをキャッチしていないのが原因
+                        \n
+                        ・@sou_anさんがプルリクしたが採択されていない。
+                        「Add textedit event for text editing by IME #5109」
+                        ※個人で直すとcythonによるビルドが必要
+                        SDL2のライブラリーもあるのでビルド環境を作るのは難しい
+                        '''
+            Screen:
+                name: '④日本語入力（IME）2'
+                Image:
+                    source: 'IME_example.jpg'
+
+            Screen:
+                name: 'Kivyのここがダメ'
+                TextSlide:
+                    size_hint_y: 1.2
+
+                    text:
+                        '''
+                        \n
+                        ・位置やサイズの指定がわかりにくい(pos_hint,size_hint)
+                        ・公式マニュアルで大事なことがちゃんと書いていない・・・
+                        →わかっている人がわかっている人に向かって書いている
+                        \n
+                        ・チュートリアルがあんまりよくない
+                        →アニメーションとマルチタッチのチュートリアルで
+                        あってKv Languaeのチュートリアルではない
+                        \n
+                        ・正しい書き方がよくわからない
+                        ・動作が重い
+                        →OpenGLで描画しているので起動時間など非力なPCだと時間ががかる
+                        '''
+
+            Screen:
+                name: 'Kivyのいいところ'
+
+                TextSlide:
+                    text:
+                        '''
+                        Pythonで書ける
+                        Kivy Languleage
+                        '''
+
+
+            Screen:
+                name: 'まとめ'
+                TextSlide:
+                    text:
+                        '''
+                        興味がわいた方は使用してみてください
+                        '''
+
+
+            Screen:
+                name: 'おまけ1'
+
+                TextSlide:
+                    text:
+                        '''
+                        KVファイルの分割について
+                        \n
+                        ・Kvファイルないで「#:include <KVファイル>」
+                        ・Pythonファイル内で「load_file(<Kvファイル>)」
+
+                        '''
+
+            Screen:
+                name: 'おまけ2'
+                
+                BoxLayout:
+                    orientation: 'vertical'
+                
+                    Image:
+                        source: 'kivyMD_example.jpg'
+                
+                    ImageLabel:
+                        text:
+                            '''
+                            Kivy MD
+                            google material designeのようにkivyのレイアウトを簡単に指定できる
+                            (https://gitlab.com/kivymd/KivyMD)
+                            モバイルでのレイアウトに向いている
+                            起動がKivy単体より重くなる
+                            '''
+
+
+        #SubTitle:
+        Footer:
+            text:
+                '%s/%s - %s:%s' % (
+                1 + sm.screen_names.index(sm.current) if sm.current else 0,
+                len(sm.screens), int(app.time // 60), str(int(app.time %
+                60)).zfill(2))
+            #font_size: sp(15)
+
+
+#<MyWidget@BoxLayout>:
+#    Button:
+#        id: btn
+#        text: 'push me'
+
+
+
+
