@@ -45,7 +45,7 @@ garden install mapview
 + [https://github.com/tshirtman/pycon-fr-2014-kivy](https://github.com/tshirtman/pycon-fr-2014-kivy)
 
 また以下のコードも参考にしました
-+ [https://github.com/diegodukao/slides-pyrj]https://github.com/diegodukao/slides-pyrj()
++ [https://github.com/diegodukao/slides-pyrj](https://github.com/diegodukao/slides-pyrj)
 
 
 ※以降、追加予定
