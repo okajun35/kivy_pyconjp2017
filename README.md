@@ -19,17 +19,23 @@
 + numpy
 + matplotlib
 + kivy garden.matplotlib
++ kivy garden.mapview
 
+※garden.graphはローカル（graphフォルダ配下）で修正しています。
+コメントアウトしていますがcamera機能を使用するにはOpencvのインストールが必要です
 
 kivy garden.matplotlibのインストールは以下の通りです。
 
 ```
 pip install kivy-garden
 garden install matplotlib
+garden install mapview
 ```
 
 # そのほか
-本番のトークではフォントが有料フォントを使ってデモをする予定。
+本番のトークではフォントが有料フォントを使ってデモをする予定です。
+フォントが変わった関係で一部文字が長いスライドは上の数行の文字が見えません。
+後日終了予定です
 
 コードを整理、分割、コメントの追加を行う予定
 
@@ -40,3 +46,6 @@ garden install matplotlib
 
 また以下のコードも参考にしました
 + [https://github.com/diegodukao/slides-pyrj]https://github.com/diegodukao/slides-pyrj()
+
+
+※以降、追加予定

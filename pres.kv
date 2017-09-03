@@ -60,7 +60,7 @@ MainSlide:
                     text:
                         '''
                         オカザキ
-                        職業：一応プログラマー
+                        職業：プログラマー
                         http://twitter.com/dario_okazaki
                         '''
 
@@ -80,7 +80,7 @@ MainSlide:
                 TextSlide:
                     text:
                         '''
-                        GITHub:
+                        GITHub:https://github.com/okajun35/kivy_pyconjp2017
                         Slide
                         ※コードの詳しい説明は今回はしません。
                         '''
@@ -161,7 +161,7 @@ MainSlide:
                     ImageLabel:
                         text:
                             '''
-                            AweSome Python」Python GUI ではGUIの部門では1位　
+                            「AweSome Python」Python GUI ではGUIの部門では1位　
                             https://python.libhunt.com/categories/290-gui
                             '''
                     #Spacer
@@ -186,8 +186,8 @@ MainSlide:
                         '''
                         公式で出しているAndroidアプリがあるので
                         それをインストールして試してみる。\n
-                        ※Android端末がなくてもインストール後、
-                        example配下にあるのでそれを実行して試せます。
+                        ※Android端末がなくても「kivy_examples」を
+                        インストールして、実行すれば試せます。
                         '''
                     #Spacer
 
@@ -204,7 +204,7 @@ MainSlide:
                         text:
                             '''
                             Kivy Showcas（https://play.google.com/store/apps/details?id=org.kivy.showcase）
-                            －UI（widget）の一覧とコードが読める
+                            ・UI（widget）の一覧とコードが読める
                             '''
 
             Screen:
@@ -219,8 +219,8 @@ MainSlide:
                         text:
                             '''
                             Kivy Touchtracer（https://play.google.com/store/apps/details?id=org.kivy.touchtracer）
-                            タッチした際の挙動を表示する
-                            マルチタッチ対応
+                            ・タッチした際の挙動を表示する
+                            ・マルチタッチ対応
                             '''
 
 
@@ -235,25 +235,26 @@ MainSlide:
                     ImageLabel:
                         text:
                             '''
-                            GraphicはOpenGL ES
-                            入力はSDLで制御
-                            ※Pygameはver1.9で不要になった
-                            Windowsはver1.10でANGLE（OpenGl ESのDirectX実装）が選択できるようになった
+                            ・GraphicはOpenGL ES
+                            ・入力などはSDLで制御
+                            ※Windowsはver1.10でANGLE（OpenGl ESのDirectX実装）が選択できるようになった
                             '''
 
             Screen:
                 name: 'Kivyのファイル構造'
-                TextSlide:
-                    text:
-                        '''
-                        ①Pythonファイル（機能部分）とKVファイル（UI）
-                        ②Pythonファイルのみ
-                        －KV言語が内部で記載されている
-                        －Pythonのみで構成
+                BoxLayout:
+                    orientation: 'vertical'
+                    Image:
+                        source: 'file_example.jpg'
 
-                        '''
-                    #Spacer
-
+                    ImageLabel:
+                        text:
+                            '''
+                            ①Pythonファイル（機能部分）とKVファイル（UI）
+                            ②Pythonファイルのみ
+                            －KV言語が内部で記載されている
+                            －Pythonのみで構成
+                            '''
 
             Screen:
                 name: 'Kivyの機能について'
@@ -289,6 +290,29 @@ MainSlide:
                         '''
 
             Screen:
+                name: 'レイアウトの基本'
+                TextSlide:
+                    text:
+                        '''
+                        ・「Layout」と「Widget」を組み合わせて作る
+                        ・「Layout」の基本は「BoxLayout」
+                        ・「BoxLayout」を組み合わせると大体のレイアウトはできる
+                        ・位置は「pos_hint」、サイズは「size_hint」で相対的に決まる
+                        ・「post」、[hint」で絶対的に指定することもできる
+                        優先度は「hint」で決まるサイズが優先的に決まる
+                        ・「Label」などの文字のサイズは動的に変更する仕組みがない・・・
+                        etc…
+                        '''
+
+            Screen:
+                name: '文字、画像の表示'
+                ExampleBoxWidget
+
+            Screen:
+                name: '文字、画像の表示(size_hint)'
+                ExampleBoxWidget2
+
+            Screen:
                 name: 'Event'
                 TextSlide:
                     text:
@@ -299,9 +323,6 @@ MainSlide:
                         etc…
                         '''
 
-            Screen:
-                name: '文字、画像の表示'
-                ExampleBoxWidget
 
             Screen:
                 name: 'Property'
@@ -344,12 +365,12 @@ MainSlide:
                     ImageLabel:
                         text:
                             '''
-                            KVともいう
-                            ・UX用のメタ言語
+                            KV Languageともいう
+                            ・UI用のメタ言語
                             ・Widget（UI）を簡単に記述できる
                             ・CSSとBootstrap（グリッド）の概念にちかい
                             ※KVを使用しなくてもUIは作れるが
-                            使用したほうがコードが簡潔になる。
+                            使用したほうがコードが簡潔にかける。
                             '''
 
             Screen:
@@ -472,10 +493,11 @@ MainSlide:
                     text:
                         '''
                         スライド
-                        ・culsel:画面全体が動く
-                        ・slideview：ヘッダー，フッターは固定
-
+                        ・Carousel:ヘッダー，フッターは固定
+                        ・ScreenManager：画面全体が動く
                         etc…
+                        \n
+                        ※このスライドはScreenManagerによって作成されています
                         '''
 
             Screen:
@@ -483,10 +505,7 @@ MainSlide:
                 TextSlide:
                     text:
                         '''
-                        ファイル選択
                         ・ファイル選択
-                        ※日本語ファイルは文字化けします。
-                        \n
                         ・ドラッグ＆ドロップ
 
                         etc…
@@ -542,11 +561,57 @@ MainSlide:
                     text:
                         '''
                         拡張機能。個別にインストールする。
-                        ・グラフ描画
                         ・地図表示
+                        ・グラフ描画
                         etc…
                         '''
-           # 時間があったらmapviewも実装するか？
+
+            Screen:
+                name: '地図表示'
+                TextSlide:
+                    text:
+                        '''
+                        ・mapview(https://github.com/kivy-garden/garden.mapview)
+                        →OpenStreetMapを使用。
+                        →マーカーを表示
+                        '''
+
+            Screen:
+                name: 'mapview'
+
+                BoxLayout:
+                    orientation: 'vertical'
+
+                    Label:
+                        size_hint_y: 0.1
+                        color: color(content_color)
+                        text: "早稲田大学 西早稲田キャンパス"
+                    MapView:
+                        size: root.size
+                        id: map
+                        zoom: 17
+                        lat: 35.706020
+                        lon: 139.707188
+
+                        MapMarkerPopup:
+                            lat: 35.706020
+                            lon: 139.707188
+
+                            Bubble:
+                                size_hint: (None, None)
+                                size: (300, 100)
+                                arrow_pos: 'bottom_left'
+
+                                BoxLayout:
+                                    orientation: "horizontal"
+                                    padding: "5dp"
+
+                                    AsyncImage:
+                                        source: "https://www.waseda.jp/top/assets/uploads/2014/02/w20140415_145-2000x1333.jpg"
+                                        mipmap: True
+                                    Label:
+                                        text: "早稲田大学\n 西早稲田キャンパス"
+                                        halign: "center"
 
             Screen:
                 name: 'グラフ描画'
@@ -558,7 +623,7 @@ MainSlide:
                         ・Graph（https://github.com/kivy-garden/garden.graph）
                         ※スライドに組み込むには改造する必要あり。
                         https://github.com/kivy-garden/garden.graph/issues/7
-
+                        \n
                         matplotlbを使用するか?
                         ・matplotlib（https://github.com/kivy-garden/garden.matplotlib）
                         ・動作が重い
@@ -586,6 +651,8 @@ MainSlide:
                     text:
                         '''
                         PyInstaller(http://www.pyinstaller.org/)を使用
+                        ・使用方法はKivyの公式マニュアルを参考
+                        (https://pyky.github.io/kivy-doc-ja/guide/packaging.html)
                         ・オプションでいろいろできる
                         ・依存関係の設定などコツがいる
                         ・起動が重い
@@ -604,11 +671,35 @@ MainSlide:
                             (GooglePlayから入手)
                             →Pythonコードによるプレビューツール
                             →バックグラウンドでも動作可能
+                            →実行時のログ出力対応
                             →Pyhon2系のみ対応
+                            →Kivy1.9.1対応で最新版には対応していない
+                            \n
                             ・Buildozer（UbuntuによるVM）でのapk作成
+                            →Python2/3系対応
+                            \n
                             ・Plyer Pythonラッパーのプラットフォーム非依存API群。
                             ・Pyjnius PythonからJava / Android APIへの動的アクセスする。
-                            ・Kivy1.9.1対応で最新版には対応していない
+ 
+
+                            '''
+                    Spacer              
+
+            Screen:
+                name: 'androidアプリの作成2'
+
+                BoxLayout:
+                    orientation: 'vertical'
+                    ContentLabel:
+                        text:
+                            '''
+                            androidの開発手順はいかが理想
+                            ①PCで開発
+                            ②android端末にコードを転送
+                            ③Kivy Launcherで動作確認
+                            ④Buildozerでapk作成
+                            ⑤apkでの動作確認
+                            ⑥PlayStoreにリリース
 
                             '''
                     Spacer              
@@ -625,9 +716,8 @@ MainSlide:
                             ・Python2系のみ対応※
                             ・toolchainを使用してXcode用のプロジェクトを作成する
                             ・Pyobjus：動的にiosのAPIにアクセス
-                            ※Python3系の検討は有志によって開発中
-                            Python 3 support #184
-                            （https://github.com/kivy/kivy-ios/issues/184）
+                            ※Python3系の対応は有志によって開発中
+                            Python 3 support #184（https://github.com/kivy/kivy-ios/issues/184）
                             '''
                     Spacer       
  
@@ -636,7 +726,10 @@ MainSlide:
 
                 BoxLayout:
                     orientation: 'vertical'                        
-                    ContentLabel:
+                    Image:
+                        source: 'kivyLaucher.jpg'
+    
+                    ImageLabel:
                         text:
                             '''
                             国会図書館の検索API（http://iss.ndl.go.jp/information/api/）
@@ -697,11 +790,12 @@ MainSlide:
 
             Screen:
                 name: 'Kivyについて'
-                TextSlide:
+                TitleLabel:
                     text:
                         '''
                         GUIツールとしての機能は一通りそろっている
                         '''
+                #Spacer:
 
             Screen:
                 name: 'Kivyの4つの壁'
@@ -720,7 +814,7 @@ MainSlide:
                     Spacer
 
             Screen:
-                name: '①情報が少ない(1/3)'
+                name: '①情報が少ない(1/4)'
                 TextSlide:
                     text:
                         '''
@@ -731,32 +825,44 @@ MainSlide:
                         '''
 
             Screen:
-                name: '①情報が少ない(2/3)'
+                name: '①情報が少ない(2/4)'
                 TextSlide:
                     text:
                         '''
                         ・公式サイト（英語）
+                        (https://kivy.org/docs/)
                         ・公式の翻訳
+                        (https://pyky.github.io/kivy-doc-ja/)
                         ※最初のうちは両方開いて比較するとよい
                         ※翻訳の協力者募集中
-                        \n
-                        ・Python Kivyの使い方① ～Kv Languageの基本～
-                        ・とりなとりな氏(blog)
-                        ・水戸う 納豆斎氏(Qitta)
                         '''
 
             Screen:
-                name: '①情報が少ない(3/3)'
+                name: '①情報が少ない(3/4)'
                 TextSlide:
                     text:
                         '''
-                        ・StackOverflow
+                        日本語の情報（個人的なおすすめサイト）
+                        ・Python Kivyの使い方① ～Kv Languageの基本～
+                        (http://qiita.com/dario_okazaki/items/7892b24fcfa787faface)
+                        ・とりなとりな氏(blog)
+                        (https://torina.top/tag/Kivy/)
+                        ・水戸う 納豆斎氏(Qitta)
+                        (http://qiita.com/gotta_dive_into_python)
+                        '''
+
+            Screen:
+                name: '①情報が少ない(4/4)'
+                TextSlide:
+                    text:
+                        '''
+                        ・StackOverflow(https://stackoverflow.com/)
                         →Google翻訳使えばなんとなくわかる
                         \n
                         書籍（洋書だが国内でもAmazonで購入可能）
                         ・Creating Apps in Kivy  (O‘Reilly)
                         ・Kivy -Interactive Applications and Games in Python -Second Edition
-                        ・Kivy BlueprintsWeb
+                        ・Kivy Blueprints
                         ※コードはwebで無料で見れる
                         '''
 
@@ -847,16 +953,18 @@ MainSlide:
             Screen:
                 name: '④日本語入力（IME）'
                 TextSlide:
+                    pos:root.pos
+
                     text:
                         '''
-                        \n
+                        \n\n
                         windows/mac/iosだと日本語入力中のIMEが表示されない
                         ・SDL側の入力イベントをキャッチしていないのが原因
                         \n
                         ・@sou_anさんがプルリクしたが採択されていない。
                         「Add textedit event for text editing by IME #5109」
                         ※個人で直すとcythonによるビルドが必要
-                        SDL2のライブラリーもあるのでビルド環境を作るのは難しい
+                        SDL2のライブラリー必要なのでビルド環境を作るのは難しい
                         '''
             Screen:
                 name: '④日本語入力（IME）2'
@@ -866,22 +974,18 @@ MainSlide:
             Screen:
                 name: 'Kivyのここがダメ'
                 TextSlide:
-                    size_hint_y: 1.2
-
-                    text:
+                    text: 
                         '''
                         \n
                         ・位置やサイズの指定がわかりにくい(pos_hint,size_hint)
                         ・公式マニュアルで大事なことがちゃんと書いていない・・・
-                        →わかっている人がわかっている人に向かって書いている
-                        \n
+                        →わかっている人がわかっている人に向けて書いている
                         ・チュートリアルがあんまりよくない
                         →アニメーションとマルチタッチのチュートリアルで
                         あってKv Languaeのチュートリアルではない
-                        \n
                         ・正しい書き方がよくわからない
                         ・動作が重い
-                        →OpenGLで描画しているので起動時間など非力なPCだと時間ががかる
+                        →OpenGLで描画しているので起動時間など非力なPCだと時間ががかる 
                         '''
 
             Screen:
@@ -890,8 +994,10 @@ MainSlide:
                 TextSlide:
                     text:
                         '''
-                        Pythonで書ける
-                        Kivy Languleage
+                        ・Pythonで書ける
+                        →機能が簡潔に書ける
+                        ・Kivy Languleage
+                        →機能とUIが分離しているの見やすい
                         '''
 
 
@@ -900,7 +1006,11 @@ MainSlide:
                 TextSlide:
                     text:
                         '''
-                        興味がわいた方は使用してみてください
+                        ・簡単なアプリならすぐに作れる
+                        ・開発は今も盛ん
+                        ・Kivy Languageを使うことでUIと機能が簡潔かける
+                        ・日本語入力に問題がある
+                        ・モバイル開発ならPython2系
                         '''
 
 
@@ -930,10 +1040,10 @@ MainSlide:
                         text:
                             '''
                             Kivy MD
-                            google material designeのようにkivyのレイアウトを簡単に指定できる
+                            ・google material designeのようにkivyのレイアウトを簡単に指定できる
                             (https://gitlab.com/kivymd/KivyMD)
-                            モバイルでのレイアウトに向いている
-                            起動がKivy単体より重くなる
+                            ・モバイルでのレイアウトに向いている
+                            ・起動がKivy単体より重くなる
                             '''
 
 

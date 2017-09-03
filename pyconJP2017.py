@@ -1,7 +1,9 @@
 ﻿# -*- coding: utf-8 -*
 from kivy.config import Config
+
 Config.set('graphics', 'width', '1024')  # configは先頭で指定しないとうまく反映されない場合がある
-Config.set('graphics', 'height', '768')  
+Config.set('graphics', 'height', '705')  
+#Config.set('graphics', 'height', '768')  
 
 from kivy.app import App
 from kivy.uix.widget import Widget
@@ -42,15 +44,19 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import BooleanProperty
 
 
+
 import numpy as np
 import matplotlib
 matplotlib.use('module://kivy.garden.matplotlib.backend_kivy')
 import matplotlib.pyplot as pl
 
 
+from kivy.garden.mapview import MapView, MapMarkerPopup
+
 resource_add_path('image')
 resource_add_path('fonts')
 LabelBase.register(DEFAULT_FONT, 'mplus-2c-regular.ttf') #日本語が使用できるように日本語フォントを指定する
+#LabelBase.register(DEFAULT_FONT, 'A-TTC-Ryumin-Regular.ttc') #有料フォントを指定する
 
 
 class CalculatorRoot(BoxLayout):
@@ -195,6 +201,7 @@ class MyClockApp(App):
 
 
 #--------------------------------------------
+
 '''
 class Graph2(Graph):
     def __init__(self, **kwargs):
@@ -204,6 +211,7 @@ class Graph2(Graph):
         self._fbo = Fbo(with_stencilbuffer=False)
         #self.add_widget(self.graph_plot_sample())
 '''
+
 
 
 class GraphWidget(Widget):
@@ -220,20 +228,20 @@ class AnimeWidget(Widget):
         
     def animate(self):
     
-        animation = Animation(pos=(100, 100), t='out_bounce')
-        animation += Animation(pos=(200, 100), t='out_bounce')
-        animation &= Animation(size=(500, 500))
-        animation += Animation(size=(100, 50))
+        #animation = Animation(pos=(100, 100), t='out_bounce')
+        #animation += Animation(pos=(200, 100), t='out_bounce')
+        #animation &= Animation(size=(500, 500))
+        #animation += Animation(size=(100, 50))
         
         x = 0.0
         y = 0.0
         r = 50
         
-        pos_x = 400
-        pos_y = 300
+        pos_x = 512
+        pos_y = 350
         
-        x = r * cos(1/10) + pos_x
-        y = r * sin(1/10) + pos_y
+        x =  pos_x
+        y =  pos_y
         animation = Animation(pos=(x, y), t='out_bounce', duration = 0.05)
 
         for i in range(1,150):
@@ -288,6 +296,9 @@ class HBoxWidget(Widget):
 class ExampleBoxWidget(Widget):
     pass
 
+class ExampleBoxWidget2(Widget):
+    pass
+
 
 class ExampleButton(Widget):
     labelText = StringProperty('未反応')
@@ -305,8 +316,6 @@ class MainSlide(Widget):
  #       self.add_widget(GraphWidget())
 
 
-
-
     def call_glph(self):
         print('call')
         self.add_line()
@@ -314,7 +323,6 @@ class MainSlide(Widget):
 
     def call_matplot(self):
         print('call')
-
         self.ids.graph_matplot.add_widget(self.graph_plot_sample())   # matplotlibのグラフを表示する(動作が劇的に重くなるので一旦コメントアウト)
 
     def del_matplot(self):
@@ -390,11 +398,10 @@ class Pres(App):
     def start_stop(self):   # ストップウォッチ
         if self.stop_watch_start:
             self.stop_watch_start = False
-            self.root.ids.start_stop.text = 'Stop'
-        else:
-
-            self.stop_watch_start = True
             self.root.ids.start_stop.text = 'Start'
+        else:
+            self.stop_watch_start = True
+            self.root.ids.start_stop.text = 'Stop'
 
             
     def reset(self): # リセットボタンをクリック

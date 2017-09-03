@@ -111,12 +111,12 @@
         pos: root.pos
         orientation: 'horizontal'
         Label:
+            font_size: 30
             text: "タイトルラベル"
             color: 1, 0, 1,1    # 
-            font_size: 20
             canvas.before:
                 Color:
-                    rgba: 0, 0, 1, 1
+                    rgba: 0, 0, 0.5, 1
                 Rectangle:
                     pos: self.pos
                     size: self.size
@@ -132,6 +132,7 @@
             source:'fuukei1.jpg'
 
         Label:
+            font_size: 30
             text: "ラベル1"
             color: 1, 1, 1,1    # 
             canvas.before:
@@ -147,6 +148,7 @@
         pos: root.pos
         orientation: 'horizontal'
         Label:
+            font_size: 30
             text: "ラベル2"
             color: 0, 0, 0,1
             canvas.before:
@@ -155,14 +157,20 @@
                 Rectangle:
                     pos: self.pos
                     size: self.size
-        Image:
-            source:'flower1.jpg'
+        CheckBox:
+            canvas.before:
+                Color:
+                    rgb: 0.2, 0.2, 0.2
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
 
         Button:
+            font_size: 30
             text: "ボタン"
-            background_color: 0,0,1,1
-            color: .5,.3,2,1    # テキストのカラー,RGBA
-            font_size: 15
+            background_color: 1,0.5,0.5,1
+            color: 0,.3,2,1    # テキストのカラー,RGBA
 
 <ExampleBoxWidget>:
     BoxLayout:
@@ -174,6 +182,19 @@
         HorizonalBoxWidget2:
         HorizonalBoxWidget3:
 
+
+<ExampleBoxWidget2>:
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+
+        orientation: 'vertical'
+        HorizonalBoxWidget1:
+            size_hint_y: 0.1
+        HorizonalBoxWidget2:
+            size_hint_y: 0.4
+        HorizonalBoxWidget3:
+            size_hint_y: 0.5
 
 <ExampleButton>
     BoxLayout:
@@ -199,15 +220,26 @@
 <AnimeWidget>
     info_button: info_but
     
-    Button:
+    Label:
         id:info_but
         size: 30, 30
-        pos: 300, 300
+        pos: 512, 350
         text: 'clic'
-        background_normal: 'red.png'
+#        background_normal: 'red.png'
         border: 2, 2, 2, 2
-        on_press: root.animate()
+        #on_press: root.animate()
+        canvas:
+            Color:
+                rgba: 1, 0, 0, 1
+            #Rectangle:
+            #    pos: self.pos
+            #    size: self.size
+            Ellipse
+                pos: self.pos
+                size: self.size
 
+        #on_press: root.animate()
+        on_touch_down: root.animate()
 
 # ------------------------------
 <ClockNumber@Label>:
