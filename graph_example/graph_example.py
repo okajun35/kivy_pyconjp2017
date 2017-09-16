@@ -1,25 +1,16 @@
-# -*- coding: utf-8 -*
-
-
 from kivy.app import App
 from kivy.uix.widget import Widget
 
 
-'''
-class Graph2(Graph):
-    def __init__(self, **kwargs):
-        super(Graph2, self).__init__(**kwargs)
-        print('call Graph2')
-        #self._fbo = Fbo(size=self.size, with_stencilbuffer=False)
-        self._fbo = Fbo(with_stencilbuffer=False)
-        #self.add_widget(self.graph_plot_sample())
-'''
-
+# グラフ描画に関しては以下から取得
+# https://github.com/kivy-garden/garden.graph
+# 本体はGraphの「__init__.py」のみ
+# 本来はgarden側から呼び出すのべきだが、
+# ScrollView 、Carouselでは描画できない問題
+# https://github.com/kivy-garden/garden.graph/issues/7
+# があり、そのためにコードを持ってきて書きなおした
 
 
 class GraphWidget(Widget):
     def __init__(self, **kwargs):
         super(GraphWidget, self).__init__(**kwargs)
-        print('test')
-        #self._fbo = Fbo(size=self.size, with_stencilbuffer=False)
-        #self.add_widget(self.graph_plot_sample())

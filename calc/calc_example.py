@@ -1,25 +1,7 @@
 # -*- coding: utf-8 -*
 
+from kivy.app import App
 from kivy.uix.widget import Widget
-
-from kivy.properties import NumericProperty
-from kivy.clock import Clock
-
-from kivy.core.window import Keyboard, Window
-
-
-#from kivy.garden.graph import Graph, MeshLinePlot
-from graph import Graph, MeshLinePlot
-
-from kivy.properties import StringProperty
-
-from kivy.uix.label import Label
-
-from kivy.graphics import Color, Line
-import datetime
-
-from kivy.properties import StringProperty 
-from kivy.core.window import Window
 
 from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import BooleanProperty

@@ -5,6 +5,11 @@ from kivy.uix.widget import Widget
 from kivy.properties import StringProperty
 
 
+'''
+レイアウトの例、Kv側でDynamic Classesで宣言(@widgetをつける)することで
+Python側で定義する必要がなくなりますなくなります。
+
+'''
 #class HorizonalBoxWidget1(Widget):
 #    pass
 
@@ -26,6 +31,9 @@ from kivy.properties import StringProperty
 
 
 class ExampleButton(Widget):
+    '''
+    ボタンを押した場合の挙動の確認
+    '''
     labelText = StringProperty('未反応')
 
     def buttonClic(self):

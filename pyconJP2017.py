@@ -1,72 +1,43 @@
 ﻿# -*- coding: utf-8 -*
 from kivy.config import Config
-
-Config.set('graphics', 'width', '1024')  # configは先頭で指定しないとうまく反映されない場合がある
-Config.set('graphics', 'height', '705')  
-#Config.set('graphics', 'height', '768')  
-
 from kivy.app import App
-from kivy.uix.widget import Widget
 
-from kivy.properties import NumericProperty
+Config.set('graphics', 'width', '1024')  # 画面サイズはkivy.core.windowよりセットしないと変更しない
+Config.set('graphics', 'height', '705')  
+
 
 from kivy.core.window import Keyboard, Window
 
+from kivy.uix.widget import Widget
+from kivy.clock import Clock
 from kivy.core.text import LabelBase, DEFAULT_FONT
 from kivy.resources import resource_add_path
 
-from time import strftime
-from datetime import date
-
+from kivy.uix.label import Label
+from kivy.animation import Animation
+from kivy.graphics import Color, Line
 #from kivy.garden.graph import Graph, MeshLinePlot
 from graph import Graph, MeshLinePlot
-
-import garden
-
+from kivy.garden.mapview import MapView, MapMarkerPopup
 from kivy.properties import StringProperty
-
-from kivy.uix.label import Label
-#from kivy.graphics import Fbo
-
-from kivy.animation import Animation
-
-from math import sin, cos , pi
-
-
-from kivy.uix.floatlayout import FloatLayout
-from kivy.graphics import Color, Line
-import datetime
-
-from kivy.properties import StringProperty 
-from kivy.core.window import Window
-from os.path import splitext, basename
-
-from kivy.uix.boxlayout import BoxLayout
+from kivy.properties import NumericProperty
 from kivy.properties import BooleanProperty
 
-from kivy.clock import Clock
-
-
+from time import strftime
+from datetime import date
+from math import sin, cos , pi
+import datetime
 import numpy as np
 import matplotlib
 matplotlib.use('module://kivy.garden.matplotlib.backend_kivy')
 import matplotlib.pyplot as pl
 
-
-from kivy.garden.mapview import MapView, MapMarkerPopup
-
-
-#from calc_example import CalculatorRoot
 from calc import calc_example
 from drag_drop import  drag_drop
 from clock import  analog_clock
 from anime import  anime_example
 from layout import layout_example
-from graph import graph_example
-
-
-#resource_add_path('KivyCalender')
-#from KivyCalender.main import Calender
+from graph_example import graph_example
 
 resource_add_path('image')
 resource_add_path('fonts')
@@ -90,7 +61,7 @@ class MainSlide(Widget):
 
     def del_matplot(self):
         print('delete')
-        self.ids.graph_matplot.clear_widgets()   # matplotlibのグラフを表示する(動作が劇的に重くなるので一旦コメントアウト)
+        self.ids.graph_matplot.clear_widgets()   # matplotlibのグラフを削除する
         print('delete_comp')
 
 
@@ -132,7 +103,12 @@ class Pres(App):
         super(Pres, self).__init__(**kwargs)
         self.title = 'PyconJP2017'    # ウィンドウの名前を変更
         self.drops = []               # ドラッグアンドドロップに使用
+        
+    def on_start(self):
+        print('DEMO start')
 
+    def on_stop(self):
+        print('DEMO end')
 
     def build(self):
         Window.bind(on_key_down=self.handle_key)

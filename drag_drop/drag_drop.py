@@ -6,6 +6,12 @@ from kivy.uix.widget import Widget
 from kivy.properties import StringProperty 
 from os.path import splitext, basename
 
+
+'''
+コードは公式のサンプルをもとに改良しました
+https://github.com/kivy/kivy/blob/master/examples/miscellaneous/multiple_dropfile.py
+'''
+
 class ImageWidget(Widget):
     file_name  = StringProperty('drag')    # プロパティの追加
     image_name = StringProperty('./image/no_image.jpg')    # プロパティの追加
@@ -28,7 +34,7 @@ class ImageWidget(Widget):
             path, ext = splitext(filename)
             name = basename(filename.decode('utf-8'))
             
-            print(ext)
+            # 取得したファイルが画像ファイルかどうかを判定する
             if ext == b'.jpg' or ext == b'.JPG' or ext == b'.png' or ext == b'.PNG' or ext == b'.bmp' or ext == b'.BMP':
             #if ext == b'.jpg' or ext == b'.JPG':
              
