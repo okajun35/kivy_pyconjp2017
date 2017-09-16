@@ -1,0 +1,114 @@
+<ForBoxWidgetButton@Button>:  # ラベルのサンプルよう
+
+
+#<HorizonalBoxWidget1>:
+<HorizonalBoxWidget1@Widget>:
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: 'horizontal'
+        Label:
+            font_size: 30
+            text: "タイトルラベル"
+            color: 1, 0, 1,1    # 
+            canvas.before:
+                Color:
+                    rgba: 0, 0, 0.5, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+
+<HorizonalBoxWidget2@Widget>:
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: 'horizontal'
+
+        Image:
+            source:'fuukei1.jpg'
+
+        Label:
+            font_size: 30
+            text: "ラベル1"
+            color: 1, 1, 1,1    # 
+            canvas.before:
+                Color:
+                    rgba: 0, 1, 0, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+<HorizonalBoxWidget3@Widget>:
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: 'horizontal'
+        Label:
+            font_size: 30
+            text: "ラベル2"
+            color: 0, 0, 0,1
+            canvas.before:
+                Color:
+                    rgba: 0, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        CheckBox:
+            canvas.before:
+                Color:
+                    rgb: 0.2, 0.2, 0.2
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+
+        Button:
+            font_size: 30
+            text: "ボタン"
+            background_color: 1,0.5,0.5,1
+            color: 0,.3,2,1    # テキストのカラー,RGBA
+
+<ExampleBoxWidget@Widget>:
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+
+        orientation: 'vertical'
+        HorizonalBoxWidget1:
+        HorizonalBoxWidget2:
+        HorizonalBoxWidget3:
+
+
+<ExampleBoxWidget2@Widget>:
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+
+        orientation: 'vertical'
+        HorizonalBoxWidget1:
+            size_hint_y: 0.1
+        HorizonalBoxWidget2:
+            size_hint_y: 0.4
+        HorizonalBoxWidget3:
+            size_hint_y: 0.5
+
+<ExampleButton>
+    BoxLayout:
+        id: test1
+        size: root.size
+        pos: root.pos
+
+
+        Label:
+            font_size: 40
+            text: root.labelText
+            color: 0, 0, 0,1
+
+        Button:
+            text: "ボタン"
+            #background_color: 0,0,1,1
+            color: .5,.3,2,1
+            font_size: 40
+            on_press: root.buttonClic()
+            on_release:  root.buttonRelease()

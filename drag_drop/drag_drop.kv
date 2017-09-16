@@ -1,0 +1,23 @@
+<ImageWidget>: # ドラッグアンドドロップ
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.size
+
+        Image:
+            id: image_view
+            size_hint_y: 0.8
+            source: root.image_name
+
+
+        Label:
+            id: name1
+            size_hint_y: 0.2
+            text: root.file_name
+            font_size: 68
+            
+            canvas.before:
+                Color:
+                    rgba: 0.4, 0.4, 0.4, 0.4
+                Rectangle:
+                    pos: self.pos
+                    size: self.size

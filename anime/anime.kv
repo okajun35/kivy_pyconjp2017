@@ -1,0 +1,21 @@
+<AnimeWidget>
+    info_button: info_but
+    
+    Label:
+        id:info_but
+        size: 30, 30
+        pos: 512, 350
+        text: 'clic'
+        border: 2, 2, 2, 2
+        canvas:
+            Color:
+                rgba: 1, 0, 0, 1
+            #Rectangle:
+            #    pos: self.pos
+            #    size: self.size
+            Ellipse
+                pos: self.pos
+                size: self.size
+
+        #on_press: root.animate()
+        on_touch_down: root.animate()

@@ -3,6 +3,10 @@
 #:include set_widget.kv
 
 #:include ./calc/calculator.kv
+#:include ./drag_drop/drag_drop.kv
+#:include ./graph/graph.kv
+#:include ./anime/anime.kv
+#:include ./layout/layout_example.kv
 
 MainSlide:
 
@@ -62,7 +66,24 @@ MainSlide:
                         オカザキ
                         職業：プログラマー
                         http://twitter.com/dario_okazaki
+                        Kivyの公式マニュアルの翻訳を有志でしています
+                        (https://pyky.github.io/kivy-doc-ja/)
+
                         '''
+            Screen:
+                name: '目次'
+                TextSlide:
+                    text:
+                        '''
+                        ・Kivyとは
+                        ・今日の内容
+                        ・kivyの機能について
+                        ・kivyの４つの壁
+                        ・kivyのよい点と悪い点
+                        ・まとめ
+                        ・おまけ
+                        '''
+                    #Spacer
 
             Screen:
                 name: '検証環境'
@@ -81,8 +102,9 @@ MainSlide:
                     text:
                         '''
                         GITHub:https://github.com/okajun35/kivy_pyconjp2017
-                        Slide
+                        Slide:https://www.slideshare.net/secret/45D5Wuy6FWI3X5
                         ※コードの詳しい説明は今回はしません。
+                        コードの詳しい説明は後日webに公開予定
                         '''
                     #Spacer
 
@@ -128,13 +150,13 @@ MainSlide:
                         text:
                             '''
                             ・GitHub上（ https://github.com/kivy/kivy ）でコードが公開されている
-                            ・開発は2017年現在もおこなわれている
+                            ・2017年現在も開発は盛んにおこなわれている
                             '''
 
 
 
             Screen:
-                name: 'kivyの知名度1'
+                name: 'kivyの知名度(1/2)'
                 BoxLayout:
                     orientation: 'vertical'
                 
@@ -151,7 +173,7 @@ MainSlide:
                     #Spacer
 
             Screen:
-                name: 'kivyの知名度2'
+                name: 'kivyの知名度(2/2)'
                 BoxLayout:
                     orientation: 'vertical'
                 
@@ -161,7 +183,7 @@ MainSlide:
                     ImageLabel:
                         text:
                             '''
-                            「AweSome Python」Python GUI ではGUIの部門では1位　
+                            「AweSome Python」ではGUIの部門で1位　
                             https://python.libhunt.com/categories/290-gui
                             '''
                     #Spacer
@@ -174,13 +196,12 @@ MainSlide:
                     TitleLabel:
                         text:
                             '''
-                            \n
-                            「Kivyで何ができるか」の紹介
+                            [color=ff0000]「Kivyで何ができるか」[/b]の紹介
                             '''
                     Spacer
 
             Screen:
-                name: 'Kivyで作れるもの'
+                name: 'Kivyで作れるアプリケーション'
                 TextSlide:
                     text:
                         '''
@@ -219,7 +240,7 @@ MainSlide:
                         text:
                             '''
                             Kivy Touchtracer（https://play.google.com/store/apps/details?id=org.kivy.touchtracer）
-                            ・タッチした際の挙動を表示する
+                            ・タッチの軌跡を描画する
                             ・マルチタッチ対応
                             '''
 
@@ -235,7 +256,7 @@ MainSlide:
                     ImageLabel:
                         text:
                             '''
-                            ・GraphicはOpenGL ES
+                            ・GraphicはOpenGL ESで描画
                             ・入力などはSDLで制御
                             ※Windowsはver1.10でANGLE（OpenGl ESのDirectX実装）が選択できるようになった
                             '''
@@ -250,9 +271,9 @@ MainSlide:
                     ImageLabel:
                         text:
                             '''
-                            ①Pythonファイル（機能部分）とKVファイル（UI）
+                            ①Pythonファイル（機能部分）とKVファイル（UI）の２つ
                             ②Pythonファイルのみ
-                            －KV言語が内部で記載されている
+                            －Kv Languageが内部で記載されている
                             －Pythonのみで構成
                             '''
 
@@ -294,14 +315,15 @@ MainSlide:
                 TextSlide:
                     text:
                         '''
+                        \n
                         ・「Layout」と「Widget」を組み合わせて作る
+                        ・位置とサイズの指定は２パターンある
+                        ・絶対的な指標で指定： 「pos」、「size」
+                        ・画面サイズからの相対的な比率で指定： 「pos_hint」「size_hint」
+                        ・「hint」で決まる値が優先的に決まる
                         ・「Layout」の基本は「BoxLayout」
                         ・「BoxLayout」を組み合わせると大体のレイアウトはできる
-                        ・位置は「pos_hint」、サイズは「size_hint」で相対的に決まる
-                        ・「post」、[hint」で絶対的に指定することもできる
-                        優先度は「hint」で決まるサイズが優先的に決まる
                         ・「Label」などの文字のサイズは動的に変更する仕組みがない・・・
-                        etc…
                         '''
 
             Screen:
@@ -350,6 +372,7 @@ MainSlide:
 
             Screen:
                 name: 'ボタンとレイアウトの使用例(2/2)'
+                id: kivy_calender
                 Image:
                     source: 'kivy_calender.jpg'
 
@@ -365,12 +388,12 @@ MainSlide:
                     ImageLabel:
                         text:
                             '''
-                            KV Languageともいう
+                            Kv Languageともいう
                             ・UI用のメタ言語
                             ・Widget（UI）を簡単に記述できる
                             ・CSSとBootstrap（グリッド）の概念にちかい
-                            ※KVを使用しなくてもUIは作れるが
-                            使用したほうがコードが簡潔にかける。
+                            ※Kvを使用しなくてもUIは作れるが、
+                            使用したほうがコードが簡潔にかける
                             '''
 
             Screen:
@@ -495,7 +518,6 @@ MainSlide:
                         スライド
                         ・Carousel:ヘッダー，フッターは固定
                         ・ScreenManager：画面全体が動く
-                        etc…
                         \n
                         ※このスライドはScreenManagerによって作成されています
                         '''
@@ -507,8 +529,9 @@ MainSlide:
                         '''
                         ・ファイル選択
                         ・ドラッグ＆ドロップ
-
                         etc…
+                        \n
+                        Kivyにはこの他にもたくさんの機能があります
                         '''
 
             Screen:
@@ -572,12 +595,12 @@ MainSlide:
                     text:
                         '''
                         ・mapview(https://github.com/kivy-garden/garden.mapview)
-                        →OpenStreetMapを使用。
-                        →マーカーを表示
+                        －OpenStreetMapを使用。
+                        －マーカーを表示
                         '''
 
             Screen:
-                name: 'mapview'
+                name: 'garden.mapview'
 
                 BoxLayout:
                     orientation: 'vertical'
@@ -619,12 +642,12 @@ MainSlide:
                     text:
                         '''
                         \n
-                        Kivyの機能のみで実装するか？
+                        Kivyの機能のみで実装する
                         ・Graph（https://github.com/kivy-garden/garden.graph）
                         ※スライドに組み込むには改造する必要あり。
                         https://github.com/kivy-garden/garden.graph/issues/7
                         \n
-                        matplotlbを使用するか?
+                        matplotlbを使用する
                         ・matplotlib（https://github.com/kivy-garden/garden.matplotlib）
                         ・動作が重い
                         ・パッケージ化の際に難易度がます
@@ -641,7 +664,7 @@ MainSlide:
             Screen:
                 on_enter:root.call_matplot()
                 on_pre_leave:root.del_matplot()
-                name: 'グラフ（matplotlib)'
+                name: 'グラフ（garden.matplotlib)'
                 id: graph_matplot
 
 
@@ -651,56 +674,57 @@ MainSlide:
                     text:
                         '''
                         PyInstaller(http://www.pyinstaller.org/)を使用
-                        ・使用方法はKivyの公式マニュアルを参考
-                        (https://pyky.github.io/kivy-doc-ja/guide/packaging.html)
+                        ・使用方法はKivyの公式マニュアル(翻訳済み)を参考
+                        (https://pyky.github.io/kivy-doc-ja/guide/packaging.html)※
                         ・オプションでいろいろできる
                         ・依存関係の設定などコツがいる
                         ・起動が重い
+                        ※MacOSのみ翻訳が公式より古いので、
+                        MacOSの場合は公式を見てください
                         '''
 
             Screen:
-                name: 'androidアプリの作成'
+                name: 'androidアプリの作成(1/2)'
 
                 BoxLayout:
                     orientation: 'vertical'
                     ContentLabel:
                         text:
                             '''
-                            ■androidの場合
                             ・Kivy Launcher
                             (GooglePlayから入手)
-                            →Pythonコードによるプレビューツール
-                            →バックグラウンドでも動作可能
-                            →実行時のログ出力対応
-                            →Pyhon2系のみ対応
-                            →Kivy1.9.1対応で最新版には対応していない
+                            －Pythonコードによるプレビューツール
+                            －バックグラウンドでも動作可能
+                            －実行時のログ出力対応
+                            －Pyhon2系のみ対応
+                            －Kivy1.9.1対応で最新版には対応していない
                             \n
                             ・Buildozer（UbuntuによるVM）でのapk作成
-                            →Python2/3系対応
+                            －Python2/3系対応
                             \n
-                            ・Plyer Pythonラッパーのプラットフォーム非依存API群。
-                            ・Pyjnius PythonからJava / Android APIへの動的アクセスする。
+                            ・Plyer:Pythonラッパーのプラットフォーム非依存API群。
+                            ・Pyjnius:PythonからJava / Android APIへ動的アクセスする
  
 
                             '''
                     Spacer              
 
             Screen:
-                name: 'androidアプリの作成2'
+                name: 'androidアプリの作成(2/2)'
 
                 BoxLayout:
                     orientation: 'vertical'
                     ContentLabel:
                         text:
                             '''
-                            androidの開発手順はいかが理想
+                            androidの開発手順は以下が理想
                             ①PCで開発
                             ②android端末にコードを転送
                             ③Kivy Launcherで動作確認
                             ④Buildozerでapk作成
                             ⑤apkでの動作確認
                             ⑥PlayStoreにリリース
-
+                            ※この方法だとPython2系による開発になる
                             '''
                     Spacer              
 
@@ -712,7 +736,6 @@ MainSlide:
                     ContentLabel:
                         text:
                             '''
-                            ■iosの場合
                             ・Python2系のみ対応※
                             ・toolchainを使用してXcode用のプロジェクトを作成する
                             ・Pyobjus：動的にiosのAPIにアクセス
@@ -743,16 +766,15 @@ MainSlide:
 
                 BoxLayout:
                     orientation: 'vertical'                        
-                    # 一旦コメントアウト
-                    #Camera:
-                    #    id: camera
-                    #    resolution: (640, 480)
-                    #    play: False
-                    #ToggleButton:
-                    #    text: 'Play'
-                    #    on_press: camera.play = not camera.play
-                    #    size_hint_y: None
-                    #    height: '48dp'
+                    Camera:
+                        id: camera
+                        resolution: (640, 480)
+                        play: False
+                    ToggleButton:
+                        text: 'Play'
+                        on_press: camera.play = not camera.play
+                        size_hint_y: None
+                        height: '48dp'
                 
                         
 
@@ -807,7 +829,7 @@ MainSlide:
                             \n
                             ①情報が少ない
                             ②インストール
-                            ③KV Language
+                            ③Kv Language
                             ④日本語入力（IME）
 
                             '''
@@ -819,8 +841,8 @@ MainSlide:
                     text:
                         '''
                         ・日本語の情報は特に少ない
-                        →存在していても日本語の情報は古いものがある
-                        →環境構築系はあてにしない方がいい
+                        －存在していても日本語の情報は古いものがある
+                        －環境構築系は参考にしない方がいい
                         ・コミュニティがないのでわからなくても聞く人がいない
                         '''
 
@@ -853,68 +875,78 @@ MainSlide:
 
             Screen:
                 name: '①情報が少ない(4/4)'
-                TextSlide:
-                    text:
-                        '''
-                        ・StackOverflow(https://stackoverflow.com/)
-                        →Google翻訳使えばなんとなくわかる
-                        \n
-                        書籍（洋書だが国内でもAmazonで購入可能）
-                        ・Creating Apps in Kivy  (O‘Reilly)
-                        ・Kivy -Interactive Applications and Games in Python -Second Edition
-                        ・Kivy Blueprints
-                        ※コードはwebで無料で見れる
-                        '''
+                BoxLayout:
+                    orientation: 'vertical'
+                    ContentLabel:
+                        markup: True
+                        text:
+                            '''
+                            ・StackOverflow(https://stackoverflow.com/)
+                            －Google翻訳を使えばなんとなくわかる
+                            \n
+                            書籍（洋書だが国内でもAmazonで購入可能）
+                            ・Creating Apps in Kivy  (O‘Reilly)
+                            ・Kivy: Interactive Applications and Games in Python -Second Edition
+                            ・Kivy Blueprints
+                            ※コードはwebで無料で見れる
+                            '''
+                    Spacer
 
             Screen:
                 name: '②インストール'
-                TextSlide:
+                BoxLayout:
+                    orientation: 'vertical'
+                    ContentLabel:
+                        markup: True
+                        text:
+                            '''
+                            WindowsOSだとOpenGLとSDLなどのせいで
+                            pipでインストールできない場合がある
+                            ・Python2.7/3.4について
+                            －公式どおりで大丈夫
+                            ・3.5以上をインストール
+                            －VisualStudio2015をインストール。
+                            glutを配置しないとインストールできない
+                            ・インストールがうまくいかない場合
+                            －非公式パッケージのインストールをお勧めします
+                            (http://www.lfd.uci.edu/~gohlke/pythonlibs/#kivy)
+                            \n
+                            MacOSでもPython3.6だとうまく動作しない場合がある
+                            '''
+                    Spacer
+
+            Screen:
+                name: '③Kv Language'
+                BoxLayout:
+                    orientation: 'vertical'
                     text:
                         '''
                         \n
-                        WindowsOSだと
-                        OpenGLとSDLなど依存関係のインストールで
-                        pipでうまくいかない場合がある
-                        \n
-                        ・Python2.7/3.4について
-                        →公式どおりで大丈夫
-                        \n
-                        ・3.5以上をインストール
-                        →VisualStudio2015をインストール。
-                        glutを配置しないとインストールできない
-                        \n
-                        ・インストールがうまくいかない場合
-                        →非公式パッケージのインストールをお勧めします
-                        \n
-                        MacOSでもPython3.6だとうまく動作しない場合がある
 
                         '''
+                    ContentLabel:
+                        markup: True
+                        text:
+                            '''
+                            kivy独自の概念なので理解するのに時間がかかる
+                            \n
+                            ・kviewerを使うとリアルタイムに変更が確認できる
+                            ※Python3系だとコードを書きなおす必要がある
+                            反映されるのはkvファイル側の記述であるところが注意
+                            Pythonファイル側の設定は反映されない
+                            \n
+                            ・Inspector（）
+                            -m inspector　を実行時の引数につける
+                            widegetを選択してPropertyの値、親子関係を確認できる
+                            \n
+                            ・Python側でwidget内部にブレイクポイントをはって
+                            widgetの構成を調べる
+                            ・Atomやsublimeなどだと3rdPartyによる入力補完が可能
+                            '''
+                    Spacer
 
             Screen:
-                name: '③KV Language'
-                TextSlide:
-                    text:
-                        '''
-                        \n
-                        kivy独自の概念なので理解するのに時間がかかる
-                        \n
-                        ・kviewerを使うとリアルタイムに変更が確認できる
-                        ※Python3系だとコードを書きなおす必要がある
-                        反映されるのはkvファイル側の記述であるところが注意
-                        Pythonファイル側の設定は反映されない
-                        \n
-                        ・Inspector（）
-                        -m inspector　を実行時の引数につける
-                        widegetを選択してPropertyの値、親子関係を確認できる
-                        \n
-                        ・Python側でwidget内部にブレイクポイントをはって
-                        widgetの構成を調べる
-                        ・Atomやsublimeなどだと3rdPartyによる入力補完が可能
-                        '''
-
-
-            Screen:
-                name: '③KV Language(kviewer)'
+                name: '③Kv Language(kviewer)'
 
                 BoxLayout:
                     orientation: 'vertical'
@@ -925,15 +957,14 @@ MainSlide:
                     ImageLabel:
                         text:
                             '''
-                            ・実行の引数は以下の通り
-                            「python -m kivy.tools.kviewer <kvファイル>」
+                            「python -m kivy.tools.kviewer <kvファイル>」で実行
                             ・Python3系だとKivy本体のソースを修正しないと
                             エラーになって起動しない
                             '''
 
 
             Screen:
-                name: '③KV Language(Inspector)'
+                name: '③Kv Language(Inspector)'
                 TextSlide:
                 BoxLayout:
                     orientation: 'vertical'
@@ -944,10 +975,8 @@ MainSlide:
                     ImageLabel:
                         text:
                             '''
-                            ・実行時引数は以下の通り
-                            「python ./main.py -m inspector」
+                            「python ./main.py -m inspector」で実行
                             ・「Ctr+e」でメニューがでる
-
                             '''
 
             Screen:
@@ -960,11 +989,12 @@ MainSlide:
                         \n\n
                         windows/mac/iosだと日本語入力中のIMEが表示されない
                         ・SDL側の入力イベントをキャッチしていないのが原因
+                        (http://qiita.com/dario_okazaki/items/8c6953166b336e83e417)
                         \n
                         ・@sou_anさんがプルリクしたが採択されていない。
                         「Add textedit event for text editing by IME #5109」
                         ※個人で直すとcythonによるビルドが必要
-                        SDL2のライブラリー必要なのでビルド環境を作るのは難しい
+                        SDL2のライブラリーが必要なのでビルド環境を作るのは難しい
                         '''
             Screen:
                 name: '④日本語入力（IME）2'
@@ -979,13 +1009,13 @@ MainSlide:
                         \n
                         ・位置やサイズの指定がわかりにくい(pos_hint,size_hint)
                         ・公式マニュアルで大事なことがちゃんと書いていない・・・
-                        →わかっている人がわかっている人に向けて書いている
+                        －わかっている人がわかっている人に向けて書いている
                         ・チュートリアルがあんまりよくない
-                        →アニメーションとマルチタッチのチュートリアルで
-                        あってKv Languaeのチュートリアルではない
-                        ・正しい書き方がよくわからない
-                        ・動作が重い
-                        →OpenGLで描画しているので起動時間など非力なPCだと時間ががかる 
+                        －アニメーションとマルチタッチのチュートリアルで
+                        あってKv Languageのチュートリアルではない
+                        ・Kivyの正しい書き方がよくわからない
+                        ・起動が重い
+                        －OpenGLで描画しているので起動が非力なPCだと時間ががかる 
                         '''
 
             Screen:
@@ -995,9 +1025,10 @@ MainSlide:
                     text:
                         '''
                         ・Pythonで書ける
-                        →機能が簡潔に書ける
+                        －簡潔に書ける
+                        \n
                         ・Kivy Languleage
-                        →機能とUIが分離しているの見やすい
+                        －機能とUIが分離できるので見やすい
                         '''
 
 
@@ -1007,9 +1038,10 @@ MainSlide:
                     text:
                         '''
                         ・簡単なアプリならすぐに作れる
-                        ・開発は今も盛ん
+                        ・開発は今も盛んにおこなわれている
                         ・Kivy Languageを使うことでUIと機能が簡潔かける
                         ・日本語入力に問題がある
+                        －原因と対策はある程度見えているのでいずれできる
                         ・モバイル開発ならPython2系
                         '''
 
@@ -1020,7 +1052,9 @@ MainSlide:
                 TextSlide:
                     text:
                         '''
-                        KVファイルの分割について
+                        ・Kvファイルの分割について
+                        以下のやり方でKvファイルを読みだすことができ、
+                        Kvファイルを分割できます
                         \n
                         ・Kvファイルないで「#:include <KVファイル>」
                         ・Pythonファイル内で「load_file(<Kvファイル>)」
@@ -1040,7 +1074,7 @@ MainSlide:
                         text:
                             '''
                             Kivy MD
-                            ・google material designeのようにkivyのレイアウトを簡単に指定できる
+                            ・google material designに準拠するwidgetのコレクション
                             (https://gitlab.com/kivymd/KivyMD)
                             ・モバイルでのレイアウトに向いている
                             ・起動がKivy単体より重くなる

@@ -1,0 +1,74 @@
+<ClockNumber@Label>:
+    dial_pos:1
+    text: str(self.dial_pos)
+    pos_hint: {"center_x": 0.5+0.42*sin(pi/6*(int(self.dial_pos)-12)), "center_y": 0.5+0.42*cos(pi/6*(int(self.dial_pos)-12))}
+    font_size: self.height/16
+    color: 0,0,0,1 
+
+<Ticks>
+
+<MyClockWidget>:
+    canvas.before:
+        Color:
+            rgba: 0.1, 0.1, 0.1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+
+    face: face
+    ticks: ticks
+    FloatLayout:
+        id: face
+        size_hint: None, None
+        pos_hint: {"center_x":0.5, "center_y":0.5}
+        size: 0.9*min(root.size), 0.9*min(root.size)
+        canvas.before:
+            Color:
+                #rgb: 0.1, 0.1, 0.1
+                #rgb: 0.9, 0.9, 0.9
+
+                rgb: 1, 1, 1
+
+            Ellipse:
+                size: self.size     
+                pos: self.pos
+        ClockNumber:
+            id: Num1
+        ClockNumber:
+            id: Num2
+            dial_pos: 2
+        ClockNumber:
+            id: Num3
+            dial_pos: 3
+        ClockNumber:
+            id: Num4
+            dial_pos: 4
+        ClockNumber:
+            dial_pos: 5
+        ClockNumber:
+            id: Num6
+            dial_pos: 6
+        ClockNumber:
+            id: Num7
+            dial_pos: 7
+        ClockNumber:
+            id: Num8
+            dial_pos: 8
+        ClockNumber:
+            id: Num9
+            dial_pos: 9
+        ClockNumber:
+            id: Num10
+            dial_pos: 10
+        ClockNumber:
+            id: Num11
+            dial_pos: 11
+        ClockNumber:
+            id: Num12
+            dial_pos: 12
+
+    Ticks:
+        id: ticks
+        r: min(root.size)*0.9/2
+
