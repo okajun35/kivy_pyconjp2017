@@ -39,9 +39,11 @@ from anime import  anime_example
 from layout import layout_example
 from graph_example import graph_example
 
+#Config.set('graphics', 'height', '768')  
 resource_add_path('image')
 resource_add_path('fonts')
-LabelBase.register(DEFAULT_FONT, 'mplus-2c-regular.ttf') #日本語が使用できるように日本語フォントを指定する
+#LabelBase.register(DEFAULT_FONT, 'mplus-2c-regular.ttf') #日本語が使用できるように日本語フォントを指定する
+LabelBase.register(DEFAULT_FONT, 'A-TTC-Ryumin-Regular.ttc') #有料フォントを指定する
 
 
 class MainSlide(Widget):
@@ -105,14 +107,17 @@ class Pres(App):
         self.drops = []               # ドラッグアンドドロップに使用
         
     def on_start(self):
+        ''' 起動時に呼ばれる '''
         print('DEMO start')
 
     def on_stop(self):
+        ''' 終了時に呼ばれる '''
+
         print('DEMO end')
 
     def build(self):
-        Window.bind(on_key_down=self.handle_key)
-        Clock.schedule_interval(self.update_time, 0)
+        Window.bind(on_key_down=self.handle_key)   # スライドをキー操作でずらすのに使用
+        Clock.schedule_interval(self.update_time, 0) # 時計の表示に使用
 
         Window.bind(on_dropfile=self.handledrops)   # ドラッグアンドドロップに使用
 
@@ -120,12 +125,19 @@ class Pres(App):
         return super(Pres, self).build()
 
     def update_time(self, dt):
+        '''
+        デジタル時計の表示とストップウォッチの表示
+        
+        '''
         self.time += dt
         
+        # デジタル時計の年月日の表示
         self.root.ids.time.text = strftime('[b]%H:%M:%S[/b]')
         today        =    date.today()
+        # デジタル時計の時刻の表示
         self.root.ids.today.text = str(today.year) + '/' + str(today.month) + '/' + str(today.day)
 
+        # ストップウォッチのタイマーを表示
         if self.stop_watch_start:
             self.stop_watch_second += dt
         
@@ -134,7 +146,9 @@ class Pres(App):
 
         self.root.ids.stopwatch.text = '{0:2d}:{1:2d}.[size=40]{2:2d}[/size]'.format(int(m), int(s), int(ms))
 
-    def start_stop(self):   # ストップウォッチ
+    def start_stop(self):   
+        '''ストップウォッチのスタートボタンの操作'''
+
         if self.stop_watch_start:
             self.stop_watch_start = False
             self.root.ids.start_stop.text = 'Start'
@@ -143,7 +157,9 @@ class Pres(App):
             self.root.ids.start_stop.text = 'Stop'
 
             
-    def reset(self): # リセットボタンをクリック
+    def reset(self):
+        '''ストップウォッチのリセットボタンの操作'''
+
         #print('reset')
         
         if self.stop_watch_start:
@@ -154,20 +170,20 @@ class Pres(App):
         print('{}'.format(self.stop_watch_second))
         self.root.ids.lap.text = '00:00:00'
 
-    def record_lap(self): #ラップを取得する
+    def record_lap(self):
+        '''ストップウォッチのリセットボタンの操作'''
+
         self.root.ids.lap.text = self.root.ids.stopwatch.text
 
     def handledrops(self, *args):
-        # this will execute each function from list with arguments from
-        # Window.on_dropfile
-        #
-        # make sure `Window.on_dropfile` works on your system first,
-        # otherwise the example won't work at all
+        '''ドラッグされたファイルパスを取得する  '''
         for func in self.drops:
             func(*args)
 
 
     def handle_key(self, window, code, code2, char, modifier):
+        '''スライドをキーボードの左右ボタンで動かす'''
+
         sm = self.root.ids.sm
         
         if code == Keyboard.keycodes['right']:
