@@ -42,8 +42,8 @@ from graph_example import graph_example
 #Config.set('graphics', 'height', '768')  
 resource_add_path('image')
 resource_add_path('fonts')
-#LabelBase.register(DEFAULT_FONT, 'mplus-2c-regular.ttf') #日本語が使用できるように日本語フォントを指定する
-LabelBase.register(DEFAULT_FONT, 'A-TTC-Ryumin-Regular.ttc') #有料フォントを指定する
+LabelBase.register(DEFAULT_FONT, 'mplus-2c-regular.ttf') #日本語が使用できるように日本語フォントを指定する
+#LabelBase.register(DEFAULT_FONT, 'A-TTC-Ryumin-Regular.ttc') #有料フォントを指定する
 
 
 class MainSlide(Widget):
